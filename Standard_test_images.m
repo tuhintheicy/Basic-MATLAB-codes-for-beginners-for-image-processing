@@ -1,0 +1,17 @@
+I=imread('lena_1.tif');
+imshow(I);
+[rows, columns, channels]=size(I);
+Ix=imresize(I,[150,150]);
+Ir=Ix(:,:,1);Ig=Ix(:,:,2);Ib=Ix(:,:,3);
+figure,subplot(2,3,1),imhist(Ir);
+subplot(2,3,2),imhist(Ig);
+subplot(2,3,3),imhist(Ib);
+MeanR=mean(mean(Ir))/255;
+MeanG=mean(mean(Ig))/255;
+MeanB=mean(mean(Ib))/255;
+Ibr=imbinarize(Ir,MeanR);
+Ibb=imbinarize(Ir,MeanB);
+Ibg=imbinarize(Ir,MeanG);
+subplot(2,3,4),imshow(Ibr);
+subplot(2,3,5),imshow(Ibg);
+subplot(2,3,6),imshow(Ibb);
